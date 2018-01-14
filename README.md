@@ -3,6 +3,7 @@ Spiffdog Design boilerplate for a React component library using TypeScript.
 
 ## Install for development
 ```
+git clone https://github.com/Spiffdog-Design/component-library.git
 yarn install
 yarn link
 ```
