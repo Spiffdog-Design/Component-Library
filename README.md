@@ -23,9 +23,6 @@ yarn add @spiffdog/component-library
 ## Production Build
 * `yarn build`
 
-## Symlink
-* `yarn symlink`
-
 ## Linting
 * `yarn lint`
 
