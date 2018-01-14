@@ -29,8 +29,8 @@ yarn add @spiffdog/component-library
 
 ## Testing
 * Single run w/ lint: `yarn test`
-* Snapshots: `yarn test:snapshot`
-* Watch mode: `yarn test:watch`
+* Generate snapshots: `yarn test:snapshot`
+* Test watch mode: `yarn test:watch`
 
 ## Publish to NPM
 * `yarn dist`
