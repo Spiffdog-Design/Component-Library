@@ -39,3 +39,7 @@ export {
     Props as TextInputProps,
     State as TextInputState
 } from './components/TextInput';
+
+export {
+    EventResult
+} from './shared/interfaces/EventResult';

@@ -12,7 +12,7 @@ var path = require("path"),
 
 if (config.isProduction) {
     plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true }));
-    config.paths.output += '.min.js';
+    config.paths.output += '.js';
     config.paths.config += '.build.json';
 } else {
     config.paths.output += '.js';

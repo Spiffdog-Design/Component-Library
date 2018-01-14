@@ -7,12 +7,12 @@ export interface Props {
     children?: any;
     autoFocus?: boolean;
     name?: string;
+    pattern?: string;
     placeholder?: string;
     required?: boolean;
     type?: string;
     value?: string;
     isValid?: boolean;
-    validate?: () => boolean;
     onBlur?: (event: React.FormEvent<HTMLInputElement>, state: any) => void;
 }
 
@@ -27,7 +27,7 @@ class TextInput extends React.PureComponent<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            isValid: props.isValid || false,
+            isValid: props.isValid || true,
             value: props.value || ''
         };
     }
@@ -39,22 +39,18 @@ class TextInput extends React.PureComponent<Props, State> {
     }
 
     public handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-        const validate = (this.props && this.props.validate && this.props.validate()) || false;
-
         this.setState({
-            isValid: validate,
+            isValid: event.currentTarget.validity.valid,
             value: event.currentTarget.value
         });
     }
 
     public render() {
-        const { autoFocus, name, placeholder, required, type } = this.props,
+        const { autoFocus, name, pattern, placeholder, required, type } = this.props,
             cssClass = classNames(
-                styles['form-control'], {
-                    error: !this.state.isValid
-                }
+                styles['text-input'],
+                (!this.state.isValid) ? styles['error'] : ''
             );
-
         return (
             <input
                 autoFocus={ autoFocus }
@@ -62,6 +58,7 @@ class TextInput extends React.PureComponent<Props, State> {
                 name={ name }
                 placeholder={ placeholder }
                 required={ required }
+                pattern={ pattern }
                 type={ type }
                 value={ this.state.value }
                 onBlur={ this.handleBlur }

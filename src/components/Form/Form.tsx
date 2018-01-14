@@ -1,15 +1,16 @@
 import * as classnames from 'classnames';
 import * as React from 'react';
 
+import { EventResult } from '../../shared/interfaces/EventResult';
 const styles = require('./styles.scss');
 
 export interface Props {
-    children?: React.ReactElement<any> | string | number;
+    children?: Array<React.ReactElement<any>> | React.ReactElement<any> | string | number;
     className?: string;
     value?: string;
 
-    onChange?: (event: React.FormEvent<HTMLFormElement>, state: State) => void;
-    onSubmit?: (event: React.FormEvent<HTMLFormElement>, state: State) => void;
+    onChange?: (result: EventResult) => void;
+    onSubmit?: (result: EventResult) => void;
 }
 
 export interface State {
@@ -62,11 +63,14 @@ class Form extends React.Component<Props, State> {
         const state = { ...this.state },
             props = this.props;
 
+        event.preventDefault();
+        event.stopPropagation();
+
         state.isFormDirty = this.isFormDirty(state);
         state.isFormValid = this.isFormValid(state);
 
         if (props.onSubmit) {
-            props.onSubmit(event, state);
+            props.onSubmit({ event, state });
         }
         this.setState(state);
     }
@@ -75,6 +79,9 @@ class Form extends React.Component<Props, State> {
         const state = { ...this.state },
             field = event.currentTarget;
 
+        event.preventDefault();
+        event.stopPropagation();
+
         state.fields[field.name].value = field.value;
         state.fields[field.name].isValid = field.checkValidity();
 
@@ -82,7 +89,7 @@ class Form extends React.Component<Props, State> {
         state.isFormValid = this.isFormValid(state);
 
         if (this.props.onChange) {
-            this.props.onChange(event, state);
+            this.props.onChange({ event, state });
         }
 
         this.setState(state);
@@ -96,7 +103,10 @@ class Form extends React.Component<Props, State> {
         );
 
         return (
-            <form className={ cssClass } onSubmit={ this.handleSubmit } noValidate={ true }>
+            <form
+                className={ cssClass }
+                onSubmit={ (e: React.MouseEvent<HTMLFormElement>) => this.handleSubmit(e) }
+            >
                 {
                     React.Children.map(children, (child: React.ReactElement<any>) => {
                     return (!child.props.name)
@@ -104,7 +114,7 @@ class Form extends React.Component<Props, State> {
                         : React.cloneElement(child, {
                             errorMsg: child.props.errorMessage,
                             name: child.props.name,
-                            onBlur: this.handleBlur,
+                            onBlur: (e: React.MouseEvent<HTMLFormElement>) => this.handleBlur(e),
                             value: (value) ? value[child.props.name] : ''
                         });
                     })

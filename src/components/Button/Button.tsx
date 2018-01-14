@@ -17,12 +17,13 @@ export interface Props {
     buttonStyle?: ButtonStyles;
     buttonType?: ButtonTypes;
     className?: string;
+    disabled: boolean;
     title?: string;
     onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 }
 
 const Button: React.StatelessComponent<Props> = (props: Props) => {
-    const { buttonStyle, className, buttonType, title, onClick } = props,
+    const { buttonStyle, buttonType, className, disabled, title, onClick } = props,
         cssClass = classnames(
             styles['btn'],
             styles['btn-lg'],
@@ -36,8 +37,8 @@ const Button: React.StatelessComponent<Props> = (props: Props) => {
 
     return (
         (buttonType === ButtonTypes.Submit)
-            ? <input className={ cssClass } type={ type } value={ title } onClick={ onClick } />
-            : <button className={ cssClass } onClick={ onClick }>{ title }</button>
+            ? <input className={ cssClass } type={ type } value={ title } onClick={ onClick } disabled={ disabled } />
+            : <button className={ cssClass } onClick={ onClick } disabled={ disabled }>{ title }</button>
     );
 };
 
