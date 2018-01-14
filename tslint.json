@@ -1,0 +1,15 @@
+{
+    "extends": ["tslint:latest", "tslint-blueprint"],
+    "rules": {
+        "interface-name": [true, "never-prefix"],
+        "no-implicit-dependencies": [true, "dev"],
+        "no-string-literal": false,
+        "no-var-requires": false,
+        "one-variable-per-declaration": false,
+        "quotemark": [true, "single", "jsx-double"],
+        "trailing-comma": [true, {
+            "multiline": "never",
+            "singleline": "never"
+        }]
+    }
+}
