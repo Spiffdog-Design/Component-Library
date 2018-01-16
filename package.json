@@ -6,7 +6,7 @@
         "type": "git",
         "url": "https://github.com/Spiffdog-Design/component-library.git"
     },
-    "private": true,
+    "private": false,
     "author": "Timothy Goyer <tim.goyer@gmail.com>",
     "license": "MIT",
     "main": "dist/index.js",
