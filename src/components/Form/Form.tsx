@@ -39,8 +39,8 @@ class Form extends React.Component<Props, State> {
                 };
             }
         });
-        state.isFormDirty = false;
-        state.isFormValid = true;
+        state.isFormDirty = this.isFormDirty(state);
+        state.isFormValid = this.isFormValid(state);
         this.state = state;
     }
 
@@ -55,6 +55,9 @@ class Form extends React.Component<Props, State> {
     public isFormValid(state: State) {
         return Object.keys(state.fields).reduce((isValid, key) => {
             const item = state.fields[key];
+
+            console.info(`${key}: `, item.isValid);
+
             return isValid && (item.isValid);
         }, true);
     }
@@ -75,15 +78,14 @@ class Form extends React.Component<Props, State> {
         this.setState(state);
     }
 
-    public handleBlur(event: React.MouseEvent<HTMLFormElement>) {
-        const state = { ...this.state },
-            field = event.currentTarget;
+    public handleBlur(name: string, valid: boolean, value: any) {
+        const state = { ...this.state };
 
         event.preventDefault();
         event.stopPropagation();
 
-        state.fields[field.name].value = field.value;
-        state.fields[field.name].isValid = field.checkValidity();
+        state.fields[name].value = value;
+        state.fields[name].isValid = valid;
 
         state.isFormDirty = this.isFormDirty(state);
         state.isFormValid = this.isFormValid(state);
@@ -114,7 +116,7 @@ class Form extends React.Component<Props, State> {
                         : React.cloneElement(child, {
                             errorMsg: child.props.errorMessage,
                             name: child.props.name,
-                            onBlur: (e: React.MouseEvent<HTMLFormElement>) => this.handleBlur(e),
+                            onBlur: (name: string, valid: boolean, v: any) => this.handleBlur(name, valid, v),
                             value: (value) ? value[child.props.name] : ''
                         });
                     })

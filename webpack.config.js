@@ -66,6 +66,20 @@ module.exports = {
                     modules: true
                 }
             }, {
+                loader: 'postcss-loader',
+                options: {
+                    sourceMap: true,
+                    plugins: () => [
+                        require("postcss-import")(),
+                        // Following CSS Nesting Module Level 3: http://tabatkins.github.io/specs/css-nesting/
+                        require("postcss-nesting")(),
+                        //https://github.com/ai/browserslist
+                        require("autoprefixer")({
+                            browsers: ['last 2 versions', 'ie >= 9']
+                        })
+                    ]
+                }
+            }, {
                 // compiles Sass to CSS
                 loader: 'sass-loader',
                 options: {
