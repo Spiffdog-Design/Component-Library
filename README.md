@@ -1,5 +1,5 @@
 # @spiffdog/component-library (TypeScript)
-Spiffdog Design boilerplate for a React component library using TypeScript.
+Spiffdog Design boilerplate for a React component library using TypeScript w/ Webpack.
 
 ## Install for development
 ```
