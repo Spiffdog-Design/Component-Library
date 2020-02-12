@@ -1,36 +1,31 @@
-# @spiffdog/component-library (TypeScript)
-Spiffdog Design boilerplate for a React component library using TypeScript w/ Webpack.
+# component-library
 
-## Install for development
-```
-git clone https://github.com/Spiffdog-Design/component-library.git
-yarn install
-yarn link
-```
-The console should output the command to link to this module (i.e. `yarn link @spiffdog/component-library`).  Go to your React app's folder in the terminal and execute that command.  You can then use that library as usual.
-```
-import { Card } from '@spiffdog/component-library';
+> 
+
+[![NPM](https://img.shields.io/npm/v/component-library.svg)](https://www.npmjs.com/package/component-library) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+## Install
+
+```bash
+npm install --save component-library
 ```
 
-## Install for Production Use
-Install the library from the NPM repo.
+## Usage
+
+```tsx
+import * as React from 'react'
+
+import MyComponent from 'component-library'
+
+class Example extends React.Component {
+  render () {
+    return (
+      <MyComponent />
+    )
+  }
+}
 ```
-yarn add @spiffdog/component-library
-```
 
-## Development
-* `yarn start`
+## License
 
-## Production Build
-* `yarn build`
-
-## Linting
-* `yarn lint`
-
-## Testing
-* Single run w/ lint: `yarn test`
-* Generate snapshots: `yarn test:snapshot`
-* Test watch mode: `yarn test:watch`
-
-## Publish to NPM
-* `yarn dist`
+MIT © [tgoyer](https://github.com/tgoyer)

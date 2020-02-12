@@ -1,45 +1,23 @@
-export {
-    Button,
-    Props as ButtonProps,
-    ButtonStyles,
-    ButtonTypes
-} from './components/Button';
+/**
+ * @class ExampleComponent
+ */
 
-export {
-    Card,
-    Props as CardProps
-} from './components/Card';
+import * as React from 'react'
 
-export {
-    ErrorPanel,
-    Props as ErrorPanelProps
-} from './components/ErrorPanel';
+import styles from './styles.css'
 
-export {
-    Form,
-    Props as FormProps,
-    State as FormState
-} from './components/Form';
+export type Props = { text: string }
 
-export {
-    SubmitButton,
-    Props as SubmitButtonProps,
-    ButtonStyles as SubmitButtonStyles,
-    ButtonTypes as SubmitButtonTypes
-} from './components/SubmitButton';
+export default class ExampleComponent extends React.Component<Props> {
+  render() {
+    const {
+      text
+    } = this.props
 
-export {
-    TextArea,
-    Props as TextAreaProps,
-    State as TextAreaState
-} from './components/TextArea';
-
-export {
-    TextInput,
-    Props as TextInputProps,
-    State as TextInputState
-} from './components/TextInput';
-
-export {
-    EventResult
-} from './shared/interfaces/EventResult';
+    return (
+      <div className={styles.test}>
+        Example Component: {text}
+      </div>
+    )
+  }
+}
