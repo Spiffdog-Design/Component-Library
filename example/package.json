@@ -19,6 +19,7 @@
     "component-library": "file:../library",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-live": "^2.2.2",
     "react-router-dom": "^5.1.2"
   },
   "scripts": {

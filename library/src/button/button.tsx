@@ -11,14 +11,18 @@ const useStyles = createUseStyles({
     }
 });
 
-export interface ButtonProps { }
+export interface ButtonProps {
+    label: string
+}
 
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
+    const { label, ...rest } = props;
+
     const theme = useTheme();
-    const classes = useStyles({ ...props, theme });
+    const classes = useStyles({ ...rest, theme });
 
     return (
-        <button className={classes.button}>Press Me</button>
+        <button className={classes.button}>{label}</button>
     );
 }
 
