@@ -5,9 +5,8 @@ import defaultTheme, { Theme } from './theme';
 const merge = require('deepmerge');
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    '@global': {
-        ...theme.global
-    }
+    '@global': theme.global,
+    '@import': theme.imports
 }));
 
 interface ProviderProps {
@@ -18,18 +17,21 @@ interface ContainerProps {
     children: React.ReactNode
 }
 
-const ThemeContainer: React.FC<ContainerProps> = ({ children }) => {
+export const mergeTheme = (theme: Theme) => merge(defaultTheme, theme);
+
+const ThemeRoot: React.FC<ContainerProps> = ({ children }) => {
     useStyles();
     return <React.Fragment>{children}</React.Fragment>;
 }
 
 const Provider: React.FC<ProviderProps> = ({ children, theme }) => {
-    const merged = merge(defaultTheme, theme);
+    const merged = mergeTheme(theme);
+    merged['@import'] = theme['@import'] != null ? theme['@import'] : defaultTheme['@import'];
     return (
         <ThemeProvider theme={merged}>
-            <ThemeContainer>
+            <ThemeRoot>
                 {children}
-            </ThemeContainer>
+            </ThemeRoot>
         </ThemeProvider>
     );
 }

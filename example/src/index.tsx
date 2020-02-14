@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './App';
 import { Theme, ThemeProvider } from 'component-library';
+import App from './app';
+import { default as theme } from 'src/themes/default';
+import { default as darkTheme } from 'src/themes/dark';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -12,8 +14,8 @@ interface ThemeFormat {
 }
 
 const themes: ThemeFormat[] = [
-    { name: 'Default', theme: {} },
-    { name: 'Dark', theme: getDarkTheme() },
+    { name: 'Default', theme: theme },
+    { name: 'Dark', theme: darkTheme },
 ]
 
 const Main = () => {
@@ -38,16 +40,3 @@ ReactDOM.render(<Main />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
-function getDarkTheme() {
-    return ({
-        colors: {
-            background: {
-                default: '#333'
-            },
-            font: {
-                default: '#fff'
-            }
-        }
-    });
-}

@@ -1,9 +1,15 @@
 const theme = ({
+    imports: [
+        'url(\'https://fonts.googleapis.com/css?family=Open+Sans:600|Roboto:400,700&display=swap\')',
+    ],
     global: {
-        body: {
-            fontSize: 12,
-            fontFamily: 'sans-serif',
+        'body, html': {
+            fontSize: 14,
+            fontFamily: '\'Roboto\', sans-serif',
         },
+        strong: {
+            fontWeight: 700
+        }
     },
     colors: {
         background: {

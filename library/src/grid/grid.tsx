@@ -9,7 +9,6 @@ const useStyles = createUseStyles({
         margin: ({ theme }: { theme: Theme }) => (theme.grid.gutter / 2),
         background: ({ theme }: { theme: Theme }) => theme.colors.background.default,
         color: ({ theme }: { theme: Theme }) => theme.colors.font.default,
-        fontSize: 12,
         alignItem: (props: GridProps) => props.align || Align.CENTER,
         flexDirection: (props: GridProps) => props.direction || Direction.ROW,
         justifyContent: (props: GridProps) => props.justify || Justify.FLEX_START,
