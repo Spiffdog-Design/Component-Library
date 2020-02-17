@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save component-library
+npm install --save @spiffdog/spiffy
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ npm install --save component-library
 ```tsx
 import * as React from 'react'
 
-import MyComponent from 'component-library'
+import MyComponent from '@spiffdog/spiffy'
 
 class Example extends React.Component {
   render () {
