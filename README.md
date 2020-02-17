@@ -1,4 +1,4 @@
-# component-library
+# Spiffy
 
 > 
 
