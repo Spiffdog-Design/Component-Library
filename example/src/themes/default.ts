@@ -1,20 +1,9 @@
-import { mergeTheme } from 'component-library';
+import { Theme, ThemeOverride } from '@spiffdog/spiffy';
 
-const theme = ({
-    global: {
-        'body, html': {
-            backgroundColor: 'white',
-            margin: 0,
-            padding: 0,
-            height: '100%',
-            width: '100%',
-            '& #root': {
-                height: '100%',
-                width: '100%',
-            }
-        }
-    }
-})
+const theme = (theme: Theme): ThemeOverride => ({
+    imports: theme.imports != null ? [
+        'url(\'https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap\')',
+    ] : []
+});
 
-
-export default mergeTheme(theme);
+export default theme;

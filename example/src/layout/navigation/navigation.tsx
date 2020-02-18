@@ -3,14 +3,27 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles({
     navigation: {
         display: 'flex',
-        flexDirection: 'column',
-        flex: '0 0 8em',
+        flexDirection: 'row',
+        flex: '0 0 1em',
         order: -1,
 
-        backgroundColor: '#999999',
-        color: '#ffffff',
+        backgroundColor: '#ffffff',
+        color: '#000000',
         padding: 25,
-    }
+        '& a': {
+            padding: 12,
+        }
+    },
+    '@media (min-width: 768px)': {
+        navigation: {
+            flexDirection: 'column',
+            flex: '0 0 150px',
+            '& a': {
+                padding: 4
+            }
+        },
+    },
+
 });
 
 interface NavigationProps { }

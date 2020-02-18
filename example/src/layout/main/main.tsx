@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles({
     main: {
         flex: 1,
-        backgroundColor: '#cecece',
+        backgroundColor: '#efefef',
     }
 });
 

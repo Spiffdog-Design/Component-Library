@@ -1,21 +1,19 @@
 import React from 'react';
-
 import { createUseStyles, useTheme } from 'react-jss';
-
 import { Theme } from 'src';
 
-const useStyles = createUseStyles({
-    button: {
-        background: ({ theme }: { theme: Theme }) => theme.colors.background.alert,
-        color: ({ theme }: { theme: Theme }) => theme.colors.font.alert,
-    }
-});
-
-export interface ButtonProps {
+type ButtonProps = {
     label: string
 }
 
-const Button: React.FunctionComponent<ButtonProps> = (props) => {
+const useStyles = createUseStyles({
+    button: {
+        background: ({ theme }: { theme: Theme }) => theme.colors.background.primary,
+        color: ({ theme }: { theme: Theme }) => theme.colors.font.primary,
+    }
+});
+
+const Button: React.FC<ButtonProps> = (props) => {
     const { label, ...rest } = props;
 
     const theme = useTheme();

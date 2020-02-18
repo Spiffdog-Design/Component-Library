@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Theme, ThemeProvider } from 'component-library';
+import { Theme, ThemeProvider, mergeTheme } from '@spiffdog/spiffy';
 import App from './app';
-import { default as theme } from 'src/themes/default';
-import { default as darkTheme } from 'src/themes/dark';
+import { default as themeFn } from 'src/themes/default';
+import { default as darkFn } from 'src/themes/dark';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -14,12 +14,13 @@ interface ThemeFormat {
 }
 
 const themes: ThemeFormat[] = [
-    { name: 'Default', theme: theme },
-    { name: 'Dark', theme: darkTheme },
+    { name: 'Default', theme: mergeTheme(themeFn) },
+    { name: 'Dark', theme: mergeTheme(darkFn) },
 ]
 
 const Main = () => {
-    const [displayTheme, setDisplayTheme] = React.useState(themes[0]);
+    const [displayTheme, setDisplayTheme] = React.useState<ThemeFormat>(themes[0]);
+
     const handleThemeSelect = (name: string) => {
         const newTheme = themes.find(theme => theme.name === name);
         if (newTheme != null) {
@@ -29,7 +30,11 @@ const Main = () => {
 
     return (
         <ThemeProvider theme={displayTheme.theme}>
-            <App themes={themes.map(t => t.name)} onThemeSelect={handleThemeSelect} />
+            <App
+                theme={displayTheme.theme}
+                themes={themes.map(t => t.name)}
+                onThemeSelect={handleThemeSelect}
+            />
         </ThemeProvider>
     );
 }

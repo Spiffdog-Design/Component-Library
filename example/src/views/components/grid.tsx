@@ -1,20 +1,39 @@
 import React from 'react';
+import { Grid, GridDirection, GridAlign, GridJustify, View } from '@spiffdog/spiffy';
+import Previewer from 'src/components/previewer';
 
-import { Grid, GridDirection, Icon } from 'component-library';
+interface GridViewProps { }
 
-interface HomeProps { }
+const GridView: React.FC<GridViewProps> = () => {
+    const scope = { Grid, GridDirection, GridAlign, GridJustify };
 
-const Home: React.FC<HomeProps> = () => {
+    const code = `
+        <Grid
+            align={GridAlign.CENTER}
+            direction={GridDirection.COLUMN}
+            justify={GridJustify.FLEX_END}
+        >
+            <div>Plop</div>
+            <div>Plop</div>
+            <div>Plop</div>
+        </Grid>
+    `;
+
     return (
-        <React.Fragment>
-            <Grid direction={GridDirection.COLUMN}>
-                <div>Plop</div>
-                <div>Plop</div>
-                <div>Plop</div>
-                <Icon icon={['far', 'square']} />
-            </Grid>
-        </React.Fragment>
+        <View>
+            <Previewer code={code} scope={scope}>
+                <Grid
+                    align={GridAlign.CENTER}
+                    direction={GridDirection.COLUMN}
+                    justify={GridJustify.FLEX_END}
+                >
+                    <div>Plop</div>
+                    <div>Plop</div>
+                    <div>Plop</div>
+                </Grid>
+            </Previewer>
+        </View>
     );
 }
 
-export default Home;
+export default GridView;

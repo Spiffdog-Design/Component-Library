@@ -1,13 +1,14 @@
 {
-    "name": "component-library",
-    "version": "1.0.0",
+    "name": "@spiffdog/spiffy",
+    "version": "0.0.1",
     "description": "",
     "author": "tgoyer",
     "license": "MIT",
-    "repository": "tgoyer/component-library",
-    "main": "dist/index.js",
-    "module": "dist/index.es.js",
-    "jsnext:main": "dist/index.es.js",
+    "repository": "spiffdog-design/spiffy",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "module": "./dist/index.es.js",
+    "jsnext:main": "./dist/index.es.js",
     "engines": {
         "node": ">=8",
         "npm": ">=5"
@@ -24,14 +25,15 @@
     "dependencies": {},
     "peerDependencies": {
         "react": "^16.12.0",
-        "react-dom": "^16.12.0"
+        "react-dom": "^16.12.0",
+        "react-spring": "^8.0.27"
     },
     "devDependencies": {
-        "@svgr/rollup": "^5.1.0",
         "@fortawesome/fontawesome-svg-core": "^1.2.27",
         "@fortawesome/free-regular-svg-icons": "^5.12.1",
         "@fortawesome/free-solid-svg-icons": "^5.12.1",
         "@fortawesome/react-fontawesome": "^0.1.8",
+        "@svgr/rollup": "^5.1.0",
         "@types/classnames": "^2.2.9",
         "@types/react": "^16.9.19",
         "@types/react-dom": "^16.9.5",
@@ -52,6 +54,7 @@
         "rollup-plugin-postcss": "^2.0.6",
         "rollup-plugin-typescript2": "^0.26.0",
         "rollup-plugin-url": "^3.0.1",
+        "ts-essentials": "^6.0.1",
         "typescript": "^3.7.5"
     },
     "files": [

@@ -1,61 +1,42 @@
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import cn from 'classnames';
+import { createUseStyles } from 'react-jss';
 
 import { Theme } from 'src';
+import { Align, Direction, Justify } from './constants';
+import Item from './item';
 
-const useStyles = createUseStyles({
-    grid: {
-        display: 'flex',
-        margin: ({ theme }: { theme: Theme }) => (theme.grid.gutter / 2),
-        background: ({ theme }: { theme: Theme }) => theme.colors.background.default,
-        color: ({ theme }: { theme: Theme }) => theme.colors.font.default,
-        alignItem: (props: GridProps) => props.align || Align.CENTER,
-        flexDirection: (props: GridProps) => props.direction || Direction.ROW,
-        justifyContent: (props: GridProps) => props.justify || Justify.FLEX_START,
-        wrap: (props: GridProps) => Boolean(props.wrap) ? 'wrap' : 'nowrap',
-    }
-});
-
-const Grid: React.FC<GridProps> = ({ children, ...props }) => {
-    const theme = useTheme();
-    const classes = useStyles({ ...props, theme });
-
-    return (
-        <div className={classes.grid}>
-            {children}
-        </div>
-    );
-}
-
-interface GridProps {
+type Props = {
     children?: React.ReactNode,
     align?: Align,
     direction?: Direction,
     justify?: Justify,
     wrap?: boolean,
+    className?: string,
 }
 
-export enum Align {
-    BASELINE = 'baseline',
-    CENTER = 'center',
-    FLEX_END = 'flex-end',
-    FLEX_START = 'flex-start',
-    STRETCH = 'stretch',
+const useStyles = createUseStyles((theme: Theme) => ({
+    grid: {
+        display: 'flex',
+        margin: theme.components.grid.gutter / 2,
+        background: theme.colors.background.primary,
+        color: theme.colors.font.primary,
+        alignItem: (props: Props) => props.align || Align.CENTER,
+        flexDirection: (props: Props) => props.direction || Direction.ROW,
+        justifyContent: (props: Props) => props.justify || Justify.FLEX_START,
+        wrap: (props: Props) => Boolean(props.wrap) ? 'wrap' : 'nowrap',
+    }
+}));
+
+const Grid: React.FC<Props> = ({ children, className, ...props }) => {
+    const classes = useStyles({ ...props });
+
+    return (
+        <div className={cn(className, classes.grid)}>
+            {children}
+        </div>
+    );
 }
 
-export enum Direction {
-    COLUMN = 'column',
-    COLUMN_REVERSE = 'column-reverse',
-    ROW = 'row',
-    ROW_REVERSE = 'row-reverse',
-}
-
-export enum Justify {
-    CENTER = 'center',
-    FLEX_END = 'flex-end',
-    FLEX_START = 'flex-start',
-    SPACE_BETWEEN = 'space-between',
-    SPACE_AROUND = 'space-around',
-}
-
+Grid['Item'] = Item;
 export default Grid;

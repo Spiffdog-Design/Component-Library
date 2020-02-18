@@ -1,13 +1,14 @@
 import React from 'react';
+import { View } from '@spiffdog/spiffy';
 
-interface HomeProps { }
+interface AboutProps { }
 
-const Home: React.FC<HomeProps> = () => {
+const About: React.FC<AboutProps> = () => {
     return (
-        <React.Fragment>
+        <View>
             About
-        </React.Fragment>
+        </View>
     );
 }
 
-export default Home;
+export default About;

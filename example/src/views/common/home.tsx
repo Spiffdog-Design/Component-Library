@@ -1,12 +1,13 @@
 import React from 'react';
+import { View } from '@spiffdog/spiffy';
 
 interface HomeProps { }
 
 const Home: React.FC<HomeProps> = () => {
     return (
-        <React.Fragment>
+        <View>
             Home
-        </React.Fragment>
+        </View>
     );
 }
 

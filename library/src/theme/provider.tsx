@@ -1,12 +1,12 @@
 import React from 'react';
 import { createUseStyles, ThemeProvider } from 'react-jss';
-import defaultTheme, { Theme } from './theme';
+import defaultTheme, { Theme, ThemeOverride } from './theme';
 
 const merge = require('deepmerge');
 
 const useStyles = createUseStyles((theme: Theme) => ({
     '@global': theme.global,
-    '@import': theme.imports
+    '@import': new Set(theme.imports)
 }));
 
 interface ProviderProps {
@@ -17,7 +17,12 @@ interface ContainerProps {
     children: React.ReactNode
 }
 
-export const mergeTheme = (theme: Theme) => merge(defaultTheme, theme);
+export const mergeTheme = (themeFn?: (theme: Theme) => ThemeOverride) => {
+    const t = (themeFn == null) ? null : themeFn(defaultTheme);
+    return (t == null)
+        ? defaultTheme
+        : merge(defaultTheme, t);
+}
 
 const ThemeRoot: React.FC<ContainerProps> = ({ children }) => {
     useStyles();
@@ -25,10 +30,8 @@ const ThemeRoot: React.FC<ContainerProps> = ({ children }) => {
 }
 
 const Provider: React.FC<ProviderProps> = ({ children, theme }) => {
-    const merged = mergeTheme(theme);
-    merged['@import'] = theme['@import'] != null ? theme['@import'] : defaultTheme['@import'];
     return (
-        <ThemeProvider theme={merged}>
+        <ThemeProvider theme={theme}>
             <ThemeRoot>
                 {children}
             </ThemeRoot>
