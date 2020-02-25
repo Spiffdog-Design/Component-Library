@@ -1,42 +1,45 @@
-import typescript from 'rollup-plugin-typescript2'
-import commonjs from 'rollup-plugin-commonjs'
+import alias from '@rollup/plugin-alias';
+import beep from '@rollup/plugin-beep';
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import url from '@rollup/plugin-url'
+
+import babel from 'rollup-plugin-babel'
 import external from 'rollup-plugin-peer-deps-external'
-import postcss from 'rollup-plugin-postcss'
-import resolve from 'rollup-plugin-node-resolve'
-import url from 'rollup-plugin-url'
 import svgr from '@svgr/rollup'
 
 import pkg from './package.json'
 
 export default {
-    input: 'src/index.tsx',
+    input: 'src/index.js',
     output: [
         {
             file: pkg.main,
             format: 'cjs',
-            exports: 'named',
             sourcemap: true
         },
         {
             file: pkg.module,
             format: 'es',
-            exports: 'named',
             sourcemap: true
         }
     ],
     plugins: [
         external(),
-        postcss({
-            modules: true
+        alias({
+            entries: [
+                { find: 'src', replacement: './src' },
+            ]
         }),
         url(),
         svgr(),
-        resolve(),
-        typescript({
-            rollupCommonJSResolveHack: true,
-            clean: true,
-            sourceMap: true
+        babel({
+            exclude: 'node_modules/**'
         }),
-        commonjs()
+        resolve({
+            extensions: ['.js', '.json', '.jsx']
+        }),
+        commonjs(),
+        beep()
     ]
 }

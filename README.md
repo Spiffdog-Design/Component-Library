@@ -1,23 +1,23 @@
-# Spiffy
+# spiffy
 
-> 
+>
 
-[![NPM](https://img.shields.io/npm/v/component-library.svg)](https://www.npmjs.com/package/component-library) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/spiffy.svg)](https://www.npmjs.com/package/spiffy) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save @spiffdog/spiffy
+npm install --save spiffy
 ```
 
 ## Usage
 
-```tsx
-import * as React from 'react'
+```jsx
+import React, { Component } from 'react'
 
-import MyComponent from '@spiffdog/spiffy'
+import { MyComponent } from 'spiffy'
 
-class Example extends React.Component {
+class Example extends Component {
   render () {
     return (
       <MyComponent />
