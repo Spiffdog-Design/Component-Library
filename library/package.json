@@ -17,7 +17,7 @@
         "test:watch": "react-scripts test --env=jsdom",
         "build": "rollup -c",
         "start": "rollup -c -w",
-        "postinstall": "npm link ../example/node_modules/react/",
+        "link:lib": "npm link ../example/node_modules/react/",
         "prepare": "npm run build",
         "predeploy": "cd example && npm install && npm run build",
         "deploy": "gh-pages -d example/build"

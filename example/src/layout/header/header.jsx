@@ -22,7 +22,10 @@ const useStyles = createUseStyles({
         flex: '0 0 50px',
         padding: '0 25px',
         '& img': {
-            padding: '0 45px'
+            padding: '0 12px'
+        },
+        '& span': {
+            marginRight: 30
         }
     },
     center: {
@@ -54,6 +57,7 @@ const Header = ({ children }) => {
         <header className={cn(classes.container, classes.header)}>
             <div className={cn(classes.container, classes.left)}>
                 <img className={classes.logo} src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Spiffdog Design Logo" />
+                <span>Spiffy Components</span>
                 <Tabs selectedIndex={tab} onChange={handleChange}>
                     <Tab>
                         <Icon icon={IconTypes.solid.home} size={IconSizes.md}></Icon>
