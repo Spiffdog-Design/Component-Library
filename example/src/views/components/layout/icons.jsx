@@ -26,10 +26,11 @@ const useStyles = createUseStyles({
         }
     },
     list: {
-        display: 'flex',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, 150px)',
+        gridGap: '1rem',
         backgroundColor: '#f5f7fb',
-        flexDirection: 'row',
-        flexWrap: 'wrap'
+        justifyContent: 'space-evenly'
     }
 });
 
